@@ -2,9 +2,9 @@ var graph = require('fbgraph')
 var FbToken = require('fb-access-token')
 var EventEmitter = require('events')
 
-var fbPosts = function (username, password, pageId, config) {
+var fbPosts = function (username, password, pageId, config, token) {
   var engine = new EventEmitter()
-  var fbToken = new FbToken(username, password, config.appId || '145634995501895')
+  var fbToken = (token ? : token : new FbToken(username, password, config.appId || '145634995501895'));
 
   engine.start = function () {
     fbToken.loginGetToken(function (err, token) {
